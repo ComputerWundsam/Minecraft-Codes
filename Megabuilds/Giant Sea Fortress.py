@@ -1,9 +1,10 @@
 
 bowblock = IRON_BLOCK
 baseblock = GOLD_BLOCK
+roofblock = DIAMOND_BLOCK
 centerblock = WHITE_CONCRETE
 buildingblock = LIGHT_GRAY_CONCRETE
-windowblock = LIGHT_BLUE_STAINED_GLASS
+windowblock = WHITE_STAINED_GLASS
 startpos = pos(0, 0, 0)
 levelheight = 4
 
@@ -24,7 +25,9 @@ def createtowerparts(levels):
                 positions.add(startpos, pos(hwidth, i * levelheight, hwidth)),
                 FillOperation.REPLACE)
             for j in range(width):
-                if j % 2 == 0:
+                if j == 0:
+                    setblock = roofblock
+                elif j % 2 == 0:
                     setblock = buildingblock
                 else:
                     setblock = windowblock
@@ -47,7 +50,7 @@ def createtowerparts(levels):
                     positions.add(startpos,
                         pos(-hwidth, i * levelheight + levelheight - 1, hwidth - j)),
                     FillOperation.REPLACE)
-        blocks.fill(bowblock,
+        blocks.fill(roofblock,
             positions.add(startpos, pos(-hwidth, ((levels-k) * levelheight), -hwidth)),
             positions.add(startpos, pos(hwidth, ((levels-k) * levelheight) , hwidth)),
             FillOperation.REPLACE)
@@ -57,20 +60,20 @@ def createtowerparts(levels):
 def createbase():
     global startpos
     blocks.fill(baseblock,
-        positions.add(startpos, pos(31, 0, -2)),
-        positions.add(startpos, pos(27, -50, 2)),
+        positions.add(startpos, pos(34, 0, -3)),
+        positions.add(startpos, pos(28, -50, 3)),
         FillOperation.REPLACE)
     blocks.fill(baseblock,
-        positions.add(startpos, pos(-31, 0, -2)),
-        positions.add(startpos, pos(-27, -50, 2)),
+        positions.add(startpos, pos(-34, 0, -3)),
+        positions.add(startpos, pos(-28, -50, 3)),
         FillOperation.REPLACE)
     blocks.fill(baseblock,
-        positions.add(startpos, pos(-2, 0, -31)),
-        positions.add(startpos, pos(2, -50, -27)),
+        positions.add(startpos, pos(-3, 0, -34)),
+        positions.add(startpos, pos(3, -50, -28)),
         FillOperation.REPLACE)
     blocks.fill(baseblock,
-        positions.add(startpos, pos(-2, 0, 31)),
-        positions.add(startpos, pos(2, -50, 27)),
+        positions.add(startpos, pos(-3, 0, 34)),
+        positions.add(startpos, pos(3, -50, 28)),
         FillOperation.REPLACE)
     for i in range(10):
         shapes.circle(centerblock, startpos, 30-i, Axis.Y, ShapeOperation.REPLACE)
@@ -89,27 +92,28 @@ def createbow():
     shapes.circle(AIR, startpos, 46, Axis.Z, ShapeOperation.REPLACE)
     shapes.circle(AIR, startpos, 46, Axis.Y, ShapeOperation.REPLACE)
     blocks.fill(baseblock,
-        positions.add(startpos, pos(51, 0, -2)),
-        positions.add(startpos, pos(47, -50, 2)),
+        positions.add(startpos, pos(52, 0, -3)),
+        positions.add(startpos, pos(46, -50, 3)),
         FillOperation.REPLACE)
     blocks.fill(baseblock,
-        positions.add(startpos, pos(-2, 0, 51)),
-        positions.add(startpos, pos(2, -50, 47)),
+        positions.add(startpos, pos(-3, 0, 52)),
+        positions.add(startpos, pos(3, -50, 46)),
         FillOperation.REPLACE)
     blocks.fill(baseblock,
-        positions.add(startpos, pos(-51, 0, -2)),
-        positions.add(startpos, pos(-47, -50, 2)),
+        positions.add(startpos, pos(-52, 0, -3)),
+        positions.add(startpos, pos(-46, -50, 3)),
         FillOperation.REPLACE)
     blocks.fill(baseblock,
-        positions.add(startpos, pos(-2, 0, -51)),
-        positions.add(startpos, pos(2, -50, -47)),
+        positions.add(startpos, pos(-3, 0, -52)),
+        positions.add(startpos, pos(3, -50, -46)),
         FillOperation.REPLACE)
 
 def seaskyscraper():
     global startpos
     startpos = player.position().to_world()
+    loops.pause(10000)
     createbow()
     createbase()
-    createtowerparts(6)
+    createtowerparts(7)
     
 player.on_chat("run", seaskyscraper)
