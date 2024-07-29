@@ -4,6 +4,9 @@ LOG_SPRUCE,BROWN_WOOL,ORANGE_TERRACOTTA,CARTOGRAPHY_TABLE,MAGMA_BLOCK,LOG_JUNGLE
 
 def on_on_chat():
     startpos = positions.add(player.position(), pos(0, 79, 0))
+    loops.pause(5000)
+    for i in range(79):
+        blocks.fill(AIR, positions.add(startpos, pos(-30, -i, -30)), positions.add(startpos, pos(30, -i, 30)))
     for i in range (xyzi.length):
         blocks.place(bsets[xyzi[i][3]], positions.add(startpos, pos(xyzi[i][0], xyzi[i][1], xyzi[i][2])))
 player.on_chat("run", on_on_chat)
