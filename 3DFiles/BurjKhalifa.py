@@ -1,7 +1,7 @@
 bsets = [POLISHED_ANDESITE, CLAY, LIGHT_GRAY_GLAZED_TERRACOTTA,LIGHT_GRAY_GLAZED_TERRACOTTA,BLUE_ICE,LIGHT_BLUE_WOOL]
 
 def on_on_chat():
-    startpos = player.position()
+    startpos = positions.add(player.position(), pos(0, 100, 0))
     loops.pause(5000)
     for i in range(100):
         for j in range(4):
