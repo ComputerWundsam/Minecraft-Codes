@@ -230,7 +230,7 @@ def createadderconnections(setpos, firstpos, distance, count):
         blocks.fill(REDSTONE, positions.add(setpos, pos(0, 1+2*i, 0)), positions.add(firstpos, pos(0, 1+2*i, 0)), FillOperation.REPLACE)
         blocks.fill(REDSTONE, positions.add(setpos, pos(0+2*i, 1, 1)), positions.add(setpos, pos(0+2*i, 1, distance)), FillOperation.REPLACE)
         blocks.place(REDSTONE, positions.add(firstpos, pos(0, 1+2*i, 0)))
-        createswitch(positions.add(firstpos, pos(-1, 2*i, 0)))
+        createswitch(positions.add(firstpos, pos(-1, 3*i, 0)))
         for j in range(count):
             blocks.place(blocks.block_with_data(REPEATER, 1), positions.add(firstpos, pos(13*j+1, 1+2*i, 0)))
         blocks.place(blocks.block_with_data(REPEATER, 2), positions.add(setpos, pos(0+2*i, 1, distance)))
