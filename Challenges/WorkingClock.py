@@ -1,10 +1,21 @@
+# How to use the code: 
+# 
+# Open MakeCode > Copy the Code and insert it in a python file for MakeCode
+# 
+# First: Use the createhands command and let the hands made out of froglight be created. 
+# To use the createhands command, open the chat and write "hands" (without quotation marks
+# Create them in an empty space, ideally high up in the sky. 
+# 
+# Second: create the clock. Write "clock" in the chat, and the clock will be created. YOu can change the size of the clock.
+# The code is not perfect, but it works. 
+
 outradius = 20
 radius = 15
 inradius = 13
 c = 60
 pi = 3.14159265359
 
-def on_chat():
+def createclock():
     startpos = player.position()
     blocks.fill(GRAY_CONCRETE, positions.add(startpos, pos(0, 0, 2)), positions.add(startpos, pos(52, 52, 2)), FillOperation.REPLACE)
     for i in range(12):
@@ -18,7 +29,7 @@ def on_chat():
         asktime = gameplay.time_query(DAY_TIME)
         blocks.load_structure("secondhand" + ((int((asktime+6000)/12000*60)%60)), positions.add(startpos, pos(8, 11, 0)))
         blocks.load_structure("firsthand" + ((int(asktime/1000*60)%60)), positions.add(startpos, pos(8, 11, -1)))
-player.on_chat("run", on_chat)
+player.on_chat("clock", createclock)
 
 def createhands(): 
     startpos = player.position()
